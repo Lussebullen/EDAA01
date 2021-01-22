@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class Holgersson {
 
-	public static final String[] REGIONS = { "blekinge", "bohuslÃ¤n", "dalarna", "dalsland", "gotland", "gÃ¤strikland",
-			"halland", "hÃ¤lsingland", "hÃ¤rjedalen", "jÃ¤mtland", "lappland", "medelpad", "nÃ¤rke", "skÃ¥ne", "smÃ¥land",
-			"sÃ¶dermanland", "uppland", "vÃ¤rmland", "vÃ¤sterbotten", "vÃ¤stergÃ¶tland", "vÃ¤stmanland", "Ã¥ngermanland",
-			"Ã¶land", "Ã¶stergÃ¶tland" };
+	public static final String[] REGIONS = { "blekinge", "bohuslän", "dalarna", "dalsland", "gotland", "gästrikland",
+			"halland", "hälsingland", "härjedalen", "jämtland", "lappland", "medelpad", "närke", "skåne", "småland",
+			"södermanland", "uppland", "värmland", "västerbotten", "västergötland", "västmanland", "ångermanland",
+			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
 		

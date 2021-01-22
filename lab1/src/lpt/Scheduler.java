@@ -2,6 +2,7 @@ package lpt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class Scheduler {
 	private Machine[] machines;
@@ -30,6 +31,7 @@ public class Scheduler {
 	public void makeSchedule(List<Job> jobs) {
 		List<Job> tempJobList = new ArrayList<>(jobs);
 		tempJobList.sort(new DescTimeComp());
+		Collections.reverse(tempJobList);
 		for (Job j : tempJobList) {
 			Machine m = machineWithLeastToDo();	
 			m.assignJob(j);
@@ -45,7 +47,7 @@ public class Scheduler {
 
 	/** Skriver ut maskinernas scheman. */
 	public void printSchedule() {
-		for (int i = 0; i <= machines.length; i++) {
+		for (int i = 0; i < machines.length; i++) {
 			System.out.println(machines[i]);
 		}
 	}

@@ -7,15 +7,17 @@ import java.util.Scanner;
 
 public class Holgersson {
 
-	public static final String[] REGIONS = { "blekinge", "bohusl�n", "dalarna", "dalsland", "gotland", "g�strikland",
-			"halland", "h�lsingland", "h�rjedalen", "j�mtland", "lappland", "medelpad", "n�rke", "sk�ne", "sm�land",
-			"s�dermanland", "uppland", "v�rmland", "v�sterbotten", "v�sterg�tland", "v�stmanland", "�ngermanland",
-			"�land", "�sterg�tland" };
+	public static final String[] REGIONS = { "blekinge", "bohuslän", "dalarna", "dalsland", "gotland", "gästrikland",
+			"halland", "hälsingland", "härjedalen", "jämtland", "lappland", "medelpad", "närke", "skåne", "småland",
+			"södermanland", "uppland", "värmland", "västerbotten", "västergötland", "västmanland", "ångermanland",
+			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		TextProcessor p = new SingleWordCounter("nils");
 		TextProcessor p1 = new SingleWordCounter("norge");
+		
+		TextProcessor m1 = new MultiWordCounter(REGIONS);
 		
 		ArrayList<TextProcessor> l1 = new ArrayList<TextProcessor>();
 		l1.add(p);
@@ -29,6 +31,7 @@ public class Holgersson {
 			String word = s.next().toLowerCase();
 			for (TextProcessor n : l1) {
 				n.process(word);
+				m1.process(word);
 			}
 			//p1.process(word);	
 			//p.process(word);
@@ -38,6 +41,8 @@ public class Holgersson {
 		for (TextProcessor n : l1) {
 			n.report();
 		}
+
+		m1.report();
 		//p.report();
 		//p1.report();
 	}

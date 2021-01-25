@@ -51,10 +51,10 @@ public class Holgersson {
 
 		s.close();
 		for (TextProcessor n : l1) {
-			n.report();
+			//n.report();
 		}
 
-		m1.report();
+		//m1.report();
 		//p.report();
 		//p1.report();
 		

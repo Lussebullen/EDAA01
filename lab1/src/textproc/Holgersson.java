@@ -2,18 +2,24 @@ package textproc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Holgersson {
 
-	public static final String[] REGIONS = { "blekinge", "bohuslän", "dalarna", "dalsland", "gotland", "gästrikland",
-			"halland", "hälsingland", "härjedalen", "jämtland", "lappland", "medelpad", "närke", "skåne", "småland",
-			"södermanland", "uppland", "värmland", "västerbotten", "västergötland", "västmanland", "ångermanland",
-			"öland", "östergötland" };
+	public static final String[] REGIONS = { "blekinge", "bohuslï¿½n", "dalarna", "dalsland", "gotland", "gï¿½strikland",
+			"halland", "hï¿½lsingland", "hï¿½rjedalen", "jï¿½mtland", "lappland", "medelpad", "nï¿½rke", "skï¿½ne", "smï¿½land",
+			"sï¿½dermanland", "uppland", "vï¿½rmland", "vï¿½sterbotten", "vï¿½stergï¿½tland", "vï¿½stmanland", "ï¿½ngermanland",
+			"ï¿½land", "ï¿½stergï¿½tland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		TextProcessor p = new SingleWordCounter("nils");
+		TextProcessor p1 = new SingleWordCounter("norge");
+		
+		ArrayList<TextProcessor> l1 = new ArrayList<TextProcessor>();
+		l1.add(p);
+		l1.add(p1);
 
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
@@ -21,12 +27,18 @@ public class Holgersson {
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
-
-			p.process(word);
+			for (TextProcessor n : l1) {
+				n.process(word);
+			}
+			//p1.process(word);	
+			//p.process(word);
 		}
 
 		s.close();
-
-		p.report();
+		for (TextProcessor n : l1) {
+			n.report();
+		}
+		//p.report();
+		//p1.report();
 	}
 }

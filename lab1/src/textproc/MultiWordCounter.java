@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MultiWordCounter implements TextProcessor{
-	private HashMap<String, Integer> words;
+	private Map<String, Integer> words;
 	
 	public MultiWordCounter(String[] words) {
-		HashMap<String, Integer> con = new HashMap<String, Integer>();
+		Map<String, Integer> con = new HashMap<String, Integer>();
 		for (String n : words) {
 			con.put(n, 0);
 		}

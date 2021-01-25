@@ -1,10 +1,10 @@
 package textproc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class GeneralWordCounter implements TextProcessor{
 	private Set<String> stopwords;
@@ -12,7 +12,9 @@ public class GeneralWordCounter implements TextProcessor{
 	
 	public GeneralWordCounter(Set<String> stopwords) {
 		this.stopwords = stopwords;
-		this.words = new HashMap<String, Integer>();
+		//this.words = new HashMap<String, Integer>();
+		//D14
+		this.words = new TreeMap<String, Integer>();
 	}
 	@Override
 	public void process(String w) {

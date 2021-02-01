@@ -8,17 +8,23 @@ public static void main(String[] args) {
 	ko.offer(2);
 	ko.offer(4);
 	ko.offer(7);
-	Iterator<Integer> itr = ko.iterator();
-	System.out.println(itr.hasNext());
-	System.out.println(itr.next());
-	System.out.println(itr.hasNext());
-	System.out.println(itr.next());
-	System.out.println(itr.hasNext());
-	System.out.println(itr.next());
-	System.out.println(itr.hasNext());
-	System.out.println(itr.next());
-
 	
-
+	FifoQueue<Integer> ged = new FifoQueue<Integer>();
+	ged.offer(420);
+	ged.offer(69);
+	
+	ko.append(ged);
+	
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	System.out.println(ko.poll());
+	
+	FifoQueue<Integer> ok = ko;
+	ko.append(ok);
 }
 }

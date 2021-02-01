@@ -139,7 +139,7 @@ class TestFifoQueue {
 	void testIteratorEmptyQueue() {
 		Iterator<Integer> itr = myIntQueue.iterator();
 		assertFalse(itr.hasNext(), "Wrong result from next in empty queue");
-		assertThrows(NoSuchElementException.class, () -> itr.next());
+		assertThrows(NoSuchElementException.class, () -> itr.next());   //dont understand syntax
 	}
 
 	/**

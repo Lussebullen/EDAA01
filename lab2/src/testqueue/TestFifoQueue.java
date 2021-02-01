@@ -194,4 +194,5 @@ class TestFifoQueue {
 			assertEquals(Integer.valueOf(i), itr3.next(), "Wrong result from itr3.next");
 		}
 	}
+	
 }

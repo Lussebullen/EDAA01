@@ -18,16 +18,30 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return	true if it was possible to add the element 
 	 * 			to this queue, else false
 	 */
-	public boolean offer(E e) {
-		return false;
+	public boolean offer(E e) {				//Under what condition would it fail? Wrong type or?
+			QueueNode<E> p = new QueueNode<E>(e);
+			if (last==null) {
+				last = p;
+				last.next = p;
+				size++;
+				return true;
+			} else {
+				QueueNode<E> first = last.next;
+				p.next = first;
+				last.next = p;
+				last=p;
+				size++;
+				return true;	
+			}
 	}
 	
 	/**	
 	 * Returns the number of elements in this queue
 	 * @return the number of elements in this queue
 	 */
-	public int size() {		
-		return 0;
+	public int size() {
+		
+		return size;
 	}
 	
 	/**	
@@ -37,7 +51,11 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * 			if this queue is empty
 	 */
 	public E peek() {
-		return null;
+		if (last==null) {
+			return null;
+		} else {
+			return last.next.element;
+		}
 	}
 
 	/**	
@@ -47,7 +65,19 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return 	the head of this queue, or null if the queue is empty 
 	 */
 	public E poll() {
-		return null;
+		if (size==0) {
+			return null;
+		} else if (size==1) {
+			E first = last.element;
+			last.next = last = null;
+			size--;
+			return first;
+		} else {
+			E first = last.next.element;
+			last.next=last.next.next;
+			size--;
+			return first;
+		}
 	}
 	
 	/**	
@@ -55,7 +85,41 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return an iterator over the elements in this queue
 	 */	
 	public Iterator<E> iterator() {
-		return null;
+		return new QueueIterator();
+	}
+	
+	private class QueueIterator implements Iterator<E> {
+		private QueueNode<E> pos;
+		
+		private QueueIterator() {
+			this.pos = null;
+		}
+		
+		public boolean hasNext() {
+			if (size==0) {
+				return false;
+			} else {
+				if (pos==last) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+		
+		public E next() {
+			if (pos==null && last==null) {
+				throw new NoSuchElementException();
+			} else if (pos==null) {
+				this.pos = last.next;
+				return pos.element;
+			} else if (pos!=last) {
+				this.pos = pos.next;
+				return pos.element;
+			} else {
+				throw new NoSuchElementException();
+			}
+		}
 	}
 	
 	private static class QueueNode<E> {

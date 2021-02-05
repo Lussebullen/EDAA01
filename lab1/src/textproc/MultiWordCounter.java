@@ -1,13 +1,15 @@
 package textproc;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MultiWordCounter implements TextProcessor{
 	private Map<String, Integer> words;
 	
 	public MultiWordCounter(String[] words) {
-		Map<String, Integer> con = new HashMap<String, Integer>();
+		//Map<String, Integer> con = new HashMap<String, Integer>();
+		//D14
+		Map<String, Integer> con = new TreeMap<String, Integer>();
 		for (String n : words) {
 			con.put(n, 0);
 		}

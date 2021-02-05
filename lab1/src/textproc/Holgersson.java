@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -32,7 +35,7 @@ public class Holgersson {
 		while (scan.hasNext()) {
 			stopwords.add(scan.next());
 		}
-		TextProcessor r = new GeneralWordCounter(stopwords);
+		GeneralWordCounter r = new GeneralWordCounter(stopwords);
 		//D7
 		
 		Scanner s = new Scanner(new File("nilsholg.txt"));
@@ -59,7 +62,16 @@ public class Holgersson {
 		//p.report();
 		//p1.report();
 		
-		r.report();
+		//r.report();
+
+		
+		//ArrayList<Map.Entry<String, Integer>> var2 = var.getWordList();
+		List<Map.Entry<String, Integer>> var = r.getWordList();
+		System.out.println(var.get(1000).getKey());
+		//Map.Entry<String, Integer> printest = new ArrayList<>("boo",2);
+		
+		
+		
 		long t1 = System.nanoTime();
 		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
 	}

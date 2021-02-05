@@ -26,16 +26,16 @@ public class GeneralWordCounter implements TextProcessor{
 		}
 		
 	}
+	
+	//Lab 3 D1:
+	public List<Map.Entry<String, Integer>> getWordList() {
+		//List<Map.Entry<String, Integer>> listasd = new ArrayList<Map.Entry<String, Integer>>();
+		//listasd.addAll(words.entrySet());
+		return new ArrayList<Map.Entry<String, Integer>>(words.entrySet());
+		}
 
 	@Override
 	public void report() {
-		/*
-		for (Map.Entry<String, Integer> n : words.entrySet()) {
-			if (n.getValue()>=200) {
-				System.out.println(n.getKey() + ": " + n.getValue());
-			}
-		} */
-		
 		Set<Map.Entry<String, Integer>> wordSet = words.entrySet();
 		List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
 		wordList.sort(new WordCountComparator());

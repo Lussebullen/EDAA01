@@ -7,7 +7,7 @@ public class WordCountComparator implements Comparator<Map.Entry<String, Integer
 
 	public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
 		// TODO Auto-generated method stub
-		if (o1.getValue()==o2.getValue()) {
+		if (o1.getValue().equals(o2.getValue())) {
 			//return 0;
 			if (o1.getKey().compareTo(o2.getKey())<0) { //reverse lexicographical order
 				return 1;

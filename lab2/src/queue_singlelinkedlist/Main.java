@@ -27,7 +27,7 @@ public static void main(String[] args) {
 	//empty test
 	FifoQueue<Integer> e1 = new FifoQueue<Integer>();
 	FifoQueue<Integer> e2 = new FifoQueue<Integer>();
-	e2.offer(200);
+	//e2.offer(200);
 	
 	e1.append(e2);
 	System.out.println(e1.peek());

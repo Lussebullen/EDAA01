@@ -114,7 +114,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 				this.pos = last.next;
 				return pos.element;
 			} else if (pos!=last) {
-				pos = pos.next;
+				this.pos = pos.next;
 				return pos.element;
 			} else {
 				throw new NoSuchElementException();

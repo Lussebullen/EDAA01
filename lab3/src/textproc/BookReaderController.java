@@ -3,8 +3,14 @@ package textproc;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,14 +40,30 @@ public class BookReaderController {
 		//
 		
 		//D5
-		JButton vbut = new JButton("Alphabetic");
-		JButton hbut = new JButton("Frequency");
+		JButton fbut = new JButton("Frequency");
+		JButton abut = new JButton("Alphabetic");
 		
 		JPanel panel = new JPanel();
-		panel.add(hbut);
-		panel.add(vbut);
+		panel.add(fbut);
+		panel.add(abut);
 		
 		pane.add(panel, BorderLayout.SOUTH);
+		//
+		
+		//D6
+		//vbut.addActionListener(event -> {
+		//	System.out.println("test");
+		//});
+		//
+		
+		//D7
+		fbut.addActionListener(event -> {
+			listModel.sort(new WordCountComparator());
+		});
+		
+		abut.addActionListener(event -> {
+			listModel.sort(new AlphComparator());
+		});
 		//
 		
 		// pane är en behållarkomponent till vilken de övriga komponenterna(listvy, knappar etc.) ska läggas till.

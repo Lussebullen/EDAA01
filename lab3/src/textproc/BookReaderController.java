@@ -1,13 +1,16 @@
 package textproc;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -28,6 +31,17 @@ public class BookReaderController {
 		JScrollPane scrollPane = new JScrollPane(listView);
 		scrollPane.setPreferredSize(new Dimension(200, 100));
 		pane.add(scrollPane);	
+		//
+		
+		//D5
+		JButton vbut = new JButton("Alphabetic");
+		JButton hbut = new JButton("Frequency");
+		
+		JPanel panel = new JPanel();
+		panel.add(hbut);
+		panel.add(vbut);
+		
+		pane.add(panel, BorderLayout.SOUTH);
 		//
 		
 		// pane är en behållarkomponent till vilken de övriga komponenterna(listvy, knappar etc.) ska läggas till.

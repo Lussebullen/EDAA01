@@ -1,5 +1,6 @@
 package textproc;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
@@ -7,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class BookReaderApplication {
 	public static void main(String[] args) throws FileNotFoundException {
@@ -30,9 +34,17 @@ public class BookReaderApplication {
 		
 		//D3 setup done
 		
-		List<Map.Entry<String, Integer>> var = r.getWordList();
-		System.out.println(var.get(1000));
 		
+		List<Map.Entry<String, Integer>> var = r.getWordList();
+		//System.out.print(var.get(100));
+		
+		//D4
+		//SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(var);
+		//JList<Map.Entry<String, Integer>> listView = new JList<Map.Entry<String, Integer>>(listModel);
+		//JScrollPane scrollPane = new JScrollPane(listView);
+		//scrollPane.setPreferredSize(new Dimension(200, 100));
+		
+		//
 		
 		
 	}

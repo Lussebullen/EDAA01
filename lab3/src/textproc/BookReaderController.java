@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
@@ -63,6 +64,26 @@ public class BookReaderController {
 		
 		abut.addActionListener(event -> {
 			listModel.sort(new AlphComparator());
+		});
+		//
+		
+		//D8
+		JButton nbut = new JButton("Search:");
+		JTextField field = new JTextField("",15);  //empty textfield with width of 15 cols.
+		panel.add(nbut);
+		panel.add(field);
+		nbut.addActionListener(event -> {
+			String str = field.getText();
+			int indx = -1;
+			for (int i = 0; i <listModel.getSize(); i++) {
+				if (listModel.getElementAt(i).getKey().equals(str)) {
+					indx = i;
+				}
+			}
+			if (indx>=0) {
+				listView.ensureIndexIsVisible(indx);
+				listView.setSelectedIndex(indx);
+			}
 		});
 		//
 		

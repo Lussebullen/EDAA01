@@ -34,18 +34,7 @@ public class BookReaderApplication {
 		
 		//D3 setup done
 		
-		
-		List<Map.Entry<String, Integer>> var = r.getWordList();
-		//System.out.print(var.get(100));
-		
-		//D4
-		//SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(var);
-		//JList<Map.Entry<String, Integer>> listView = new JList<Map.Entry<String, Integer>>(listModel);
-		//JScrollPane scrollPane = new JScrollPane(listView);
-		//scrollPane.setPreferredSize(new Dimension(200, 100));
-		
-		//
-		
+
 		
 	}
 

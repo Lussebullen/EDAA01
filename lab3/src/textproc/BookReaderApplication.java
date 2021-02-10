@@ -1,16 +1,10 @@
 package textproc;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
-import javax.swing.JList;
-import javax.swing.JScrollPane;
 
 public class BookReaderApplication {
 	public static void main(String[] args) throws FileNotFoundException {

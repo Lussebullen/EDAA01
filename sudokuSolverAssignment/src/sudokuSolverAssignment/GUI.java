@@ -70,7 +70,6 @@ public class GUI {
 		
 		//actionlistener
 		sbut.addActionListener(event -> {
-			//int[] content = new int[81];
 			int[][] mat = new int[9][9];
 			for (int i=0; i<81; i++) {		//Turn string from textfield to integer and store. Add errorhandling for wrong type.
 				if (boxes[i].getText().length()>0) {
@@ -78,8 +77,6 @@ public class GUI {
 				} else {
 					mat[i%9][i/9] = 0;
 				}
-				
-				//content[i] = Integer.parseInt(boxes[i].getText());
 			}
 			//make matrix
 			Sudoku entry = new Sudoku();
@@ -89,7 +86,6 @@ public class GUI {
 			for (int i=0; i<81; i++) {	
 				boxes[i].setText(String.valueOf(matout[i%9][i/9]));
 			}
-			 
 		});
 		
 		cbut.addActionListener(event -> {

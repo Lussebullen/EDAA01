@@ -29,15 +29,19 @@ public class Main {
 		         	   { 0, 4, 5, 2, 8, 6, 3, 1, 9 } };
 		
 		test2.setMatrix(partial);
+		int[][] test3 = new int[9][9];
+		test3[0][0]=1;
+		testcase.setMatrix(test3);
 		
-		System.out.println(test2.solve());
-		System.out.println(test2.isAllValid());
+		System.out.println(testcase.solve());
+		System.out.println(testcase.isAllValid());
 		//for (int i=0; i<9; i++) {
 		//	for (int j=0; j<9; j++) {
 		//		System.out.println(test2.getNumber(i, j)==truex[i][j]);
 		//	}
 		//}
 		
+		GUI testgui = new GUI();
 		
 	}
 

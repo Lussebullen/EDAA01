@@ -27,6 +27,10 @@ public class BinarySearchTree<E> {
 		this.root = null;
 	}
 
+	public BinarySearchTree(Object object) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Inserts the specified element in the tree if no duplicate exists.
 	 * @param x element to be inserted
@@ -92,6 +96,7 @@ public class BinarySearchTree<E> {
 	 * Removes all of the elements from this list.
 	 */
 	public void clear() {
+		this.size=0;
 		this.root=null;
 	}
 	

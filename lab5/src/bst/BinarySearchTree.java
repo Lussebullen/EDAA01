@@ -7,20 +7,24 @@ import java.util.Comparator;
 public class BinarySearchTree<E> {
   BinaryNode<E> root;  // Används också i BSTVisaulizer
   int size;            // Används också i BSTVisaulizer
-  private Comparator<E> ccomparator;
+  private Comparator<E> comparator;
     
 	/**
 	 * Constructs an empty binary search tree.
 	 */
 	public BinarySearchTree() {
-		
+		this.size = 0;
+		this.root = null;
+		this.comparator = (a,b) -> ((Comparable<E>) a).compareTo(b);
 	}
 	
 	/**
 	 * Constructs an empty binary search tree, sorted according to the specified comparator.
 	 */
 	public BinarySearchTree(Comparator<E> comparator) {
-		
+		this.comparator = comparator;
+		this.size = 0;
+		this.root = null;
 	}
 
 	/**
@@ -29,7 +33,35 @@ public class BinarySearchTree<E> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		return false;
+		if (root == null) {
+			root = new BinaryNode<E>(x);
+			this.size+=1;
+			return true;
+		} else {
+			return recAdd(x, root);
+		}
+	}
+	private boolean recAdd(E x, BinaryNode<E> node) {
+		if (x.equals(node.element)) {
+			return false;
+		} else if (comparator.compare(x, node.element)<0) {
+			if (node.left!=null) {
+				return recAdd(x,node.left);
+			} else {
+				node.left = new BinaryNode<E>(x);
+				this.size+=1;
+				return true;
+			}
+			
+		} else {
+			if (node.right!=null) {
+				return recAdd(x,node.right);
+			} else {
+				node.right = new BinaryNode<E>(x);
+				this.size+=1;
+				return true;
+			}
+		} 
 	}
 	
 	/**
@@ -37,7 +69,15 @@ public class BinarySearchTree<E> {
 	 * @return the height of the tree
 	 */
 	public int height() {
-		return 0;
+		return recHeight(root);		
+	}
+	
+	private int recHeight(BinaryNode<E> node) {
+		if (node==null) {
+			return 0;
+		} else {
+			return 1 + Math.max(recHeight(node.left), recHeight(node.right));
+		}
 	}
 	
 	/**
@@ -45,21 +85,32 @@ public class BinarySearchTree<E> {
 	 * @return the number of elements in this tree
 	 */
 	public int size() {
-		return 0;
+		return size;
 	}
 	
 	/**
 	 * Removes all of the elements from this list.
 	 */
 	public void clear() {
-		
+		this.root=null;
 	}
 	
 	/**
 	 * Print tree contents in inorder.
 	 */
 	public void printTree() {
-
+		if (root==null) {
+			System.out.println("Empty");
+		} else {
+			recPrintTree(root);
+		}
+	}
+	private void recPrintTree(BinaryNode<E> node) {
+		if (node!=null) {
+			recPrintTree(node.left);
+			System.out.println(node.element);
+			recPrintTree(node.right);
+		}
 	}
 
 	/** 
@@ -95,7 +146,8 @@ public class BinarySearchTree<E> {
 
 		private BinaryNode(E element) {
 			this.element = element;
+			this.left = null;
+			this.right = null;
 		}	
 	}
-	
 }

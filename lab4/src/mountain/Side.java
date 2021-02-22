@@ -9,6 +9,7 @@ public class Side {
 		this.a=a;
 		this.b=b;
 	}
+	
 	@Override
 	public int hashCode() {
 		return a.hashCode() + b.hashCode();

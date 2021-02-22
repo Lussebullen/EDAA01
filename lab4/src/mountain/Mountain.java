@@ -65,6 +65,7 @@ public class Mountain extends Fractal {
 			drawTriangle(turtle, c, pbc, pac, order-1, dev/2);
 		}
 	}
+	
 	private Point setMid(Point a, Point b, double dev) {
 		Point pab;
 		if (parts.containsKey(new Side(a,b))) {

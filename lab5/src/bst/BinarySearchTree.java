@@ -2,6 +2,7 @@ package bst;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 
 public class BinarySearchTree<E> {
@@ -122,14 +123,25 @@ public class BinarySearchTree<E> {
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-
+		if (root==null) {
+			//Do nothing
+		} else {
+			ArrayList<E> slist = new ArrayList<E>();
+			this.toArray(root, slist);
+			this.root = buildTree(slist,0,slist.size()-1);
+		}
 	}
 	
 	/*
 	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
 	 */
-	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) {
-	
+	private void toArray(BinaryNode<E> node, ArrayList<E> sorted) {
+		if (node!=null) {
+			toArray(node.left, sorted);
+			sorted.add(node.element);
+			//System.out.print(node.element);
+			toArray(node.right, sorted);
+		}
 	}
 	
 	/*
@@ -139,7 +151,21 @@ public class BinarySearchTree<E> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
-		return null;
+		if (first>last) {
+			return null; //can't "fold"
+		}
+		if (first==last) {
+			//System.out.println("solo "+sorted.get(first));
+			return new BinaryNode<E>(sorted.get(first));  // if width = 1
+		}
+		
+		int mid = (first+last)/2;
+		//System.out.println("mid "+mid);
+		//System.out.println("midval "+sorted.get(mid));
+		BinaryNode<E> node = new BinaryNode<E>(sorted.get(mid));
+		node.left = buildTree(sorted, first, mid-1);
+		node.right = buildTree(sorted, mid+1, last);
+		return node;
 	}
 	
 
@@ -154,5 +180,54 @@ public class BinarySearchTree<E> {
 			this.left = null;
 			this.right = null;
 		}	
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BinarySearchTree bs = new BinarySearchTree();
+		bs.add(5);
+		bs.add(2);
+		bs.add(7);
+		bs.add(9);
+		bs.add(6);
+		bs.add(11);
+		bs.add(20);
+		bs.add(50);
+		bs.add(51);
+		bs.add(49);
+		bs.add(500);
+		bs.add(2);
+		bs.add(1);
+		bs.add(25);
+		
+		bs.printTree();
+		BSTVisualizer graphicskew = new BSTVisualizer("BinaryTree", 300, 300);
+		graphicskew.drawTree(bs);
+		bs.rebuild();
+		BSTVisualizer graphicrebuilt = new BSTVisualizer("BinaryTree", 300, 300);
+		graphicrebuilt.drawTree(bs);	
+		
+		Comparator<String> comp = (String a, String b) -> a.length() - b.length();
+		BinarySearchTree bs2 = new BinarySearchTree(comp);
+		bs2.add("l".repeat(5));
+		bs2.add("l".repeat(2));
+		bs2.add("l".repeat(7));
+		bs2.add("l".repeat(9));
+		bs2.add("l".repeat(6));
+		bs2.add("l".repeat(11));
+		bs2.add("l".repeat(20));
+		bs2.add("l".repeat(50));
+		bs2.add("l".repeat(51));
+		bs2.add("l".repeat(49));
+		bs2.add("l".repeat(2));
+		bs2.add("l".repeat(1));
+		bs2.add("l".repeat(25));
+		
+		bs2.printTree();
+		BSTVisualizer graphicskew2 = new BSTVisualizer("BinaryTree", 300, 300);
+		graphicskew2.drawTree(bs2);
+		bs2.rebuild();
+		BSTVisualizer graphicrebuilt2 = new BSTVisualizer("BinaryTree", 300, 300);
+		graphicrebuilt2.drawTree(bs2);
 	}
 }

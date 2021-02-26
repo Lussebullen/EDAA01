@@ -17,8 +17,8 @@ class BSTtest {
 	@BeforeEach
 	void setUp() throws Exception {
 		bs1 = new BinarySearchTree();
-		comp = (String a, String b) -> a.length() - b.length(); //why cant I just put this in as parameter directly???
-		bs2 = new BinarySearchTree(comp);
+		//comp = (String a, String b) -> a.length() - b.length(); //why cant I just put this in as parameter directly???
+		bs2 = new BinarySearchTree((a, b) -> ((String) a).length() - ((String) b).length());
 	}
 
 	@AfterEach

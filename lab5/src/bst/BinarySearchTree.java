@@ -139,7 +139,6 @@ public class BinarySearchTree<E> {
 		if (node!=null) {
 			toArray(node.left, sorted);
 			sorted.add(node.element);
-			//System.out.print(node.element);
 			toArray(node.right, sorted);
 		}
 	}
@@ -155,13 +154,10 @@ public class BinarySearchTree<E> {
 			return null; //can't "fold"
 		}
 		if (first==last) {
-			//System.out.println("solo "+sorted.get(first));
 			return new BinaryNode<E>(sorted.get(first));  // if width = 1
 		}
 		
 		int mid = (first+last)/2;
-		//System.out.println("mid "+mid);
-		//System.out.println("midval "+sorted.get(mid));
 		BinaryNode<E> node = new BinaryNode<E>(sorted.get(mid));
 		node.left = buildTree(sorted, first, mid-1);
 		node.right = buildTree(sorted, mid+1, last);
@@ -207,8 +203,8 @@ public class BinarySearchTree<E> {
 		BSTVisualizer graphicrebuilt = new BSTVisualizer("BinaryTree", 300, 300);
 		graphicrebuilt.drawTree(bs);	
 		
-		Comparator<String> comp = (String a, String b) -> a.length() - b.length();
-		BinarySearchTree bs2 = new BinarySearchTree(comp);
+		//Comparator<String> comp = (String a, String b) -> a.length() - b.length();
+		BinarySearchTree bs2 = new BinarySearchTree((a,b)->((String) a).length() -((String) b).length());
 		bs2.add("l".repeat(5));
 		bs2.add("l".repeat(2));
 		bs2.add("l".repeat(7));

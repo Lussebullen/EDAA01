@@ -47,7 +47,7 @@ public class Sudoku implements SudokuSolver {
 			}
 			int quadr = r/3;
 			int quadc = c/3;
-			for (int i=0;i<3;i++) {					//Checks all values in local 3x3 grid.
+			for (int i=0;i<3;i++) {					//Checks all values in local 3x3 grid "quadrant".
 				for (int j=0;j<3;j++) {
 					if (3*quadc+i==c && 3*quadr+j==r) {  //do nothing if we compare to value itself
 					} else if (grid[3*quadr+j][3*quadc+i]==nbr) {
@@ -64,10 +64,10 @@ public class Sudoku implements SudokuSolver {
 		boolean val = true;
 		for (int i=0;i<9;i++) {
 			for (int k=0; k<9; k++) {
-				if (grid[i][k]==0) {
-					return false;      //hasnt been filled out fully.
+				if (grid[i][k]==0) {//automatic false if "unfilled" location
+					return false;      
 				} else if (this.isValid(i,k,grid[i][k])==false) {
-					val=false;
+					val=false;   //false if any single location is not valid
 				}
 			}
 		}
@@ -77,19 +77,18 @@ public class Sudoku implements SudokuSolver {
 	@Override
 	public boolean solve() {
 		// TODO Auto-generated method stub
+		//preliminary check for invalid inputs
+				for (int row=0; row<9; row++) {
+					for (int col=0; col<9; col++) {
+						if(grid[row][col]!=0 && !this.isValid(row, col, grid[row][col])) {
+							return false;
+						}
+					}
+				}
 		return solve(0,0);
 	}
 	private boolean solve(int r, int c) {
-		//preliminary check for invalid inputs
-		for (int row=0; row<9; row++) {
-			for (int col=0; col<9; col++) {
-				if(grid[row][col]!=0 && !this.isValid(row, col, grid[row][col])) {
-					return false;
-				}
-			}
-		}
-		//
-		
+		//recursively solve sudoku with backtracking
 		for (int row=0; row<9; row++) {
 			for (int col=0; col<9; col++) {
 				if (grid[row][col]==0) {  //only do something if empty.
@@ -107,7 +106,7 @@ public class Sudoku implements SudokuSolver {
 				}
 			}
 		}
-		
+		//returns validity of found solution.
 		if (this.isAllValid()) {
 			return true;
 		} else {
@@ -127,10 +126,10 @@ public class Sudoku implements SudokuSolver {
 
 	@Override
 	public void setMatrix(int[][] nbrs) {
-		if (nbrs.length==9 && nbrs[1].length==9) {
+		if (nbrs.length==9 && nbrs[1].length==9) { //if dimension is proper
 			for (int i=0;i<9;i++) {
 				for (int k=0;k<9;k++) {
-					if (nbrs[k][i]<0 || nbrs[k][i]>9) {
+					if (nbrs[k][i]<0 || nbrs[k][i]>9) {  //integer has wrong value
 						throw new IllegalArgumentException();
 					} 
 				}

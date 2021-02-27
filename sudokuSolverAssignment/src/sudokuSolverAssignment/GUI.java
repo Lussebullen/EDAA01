@@ -49,9 +49,9 @@ public class GUI {
 		buttonpanel.add(sbut);
 		buttonpanel.add(cbut);
 		
-		//actionlistener
+		//actionlistener for solve
 		sbut.addActionListener(event -> {
-			int[][] mat = new int[9][9];
+			int[][] mat = new int[9][9];	//matrix
 			for (int i=0; i<81; i++) {		//Turn string from textfield to integer and store. Add errorhandling for wrong type.
 				try {
 					if (boxes[i].getText().length()>0) {  //checks integer 1-9
@@ -59,7 +59,7 @@ public class GUI {
 						if (a<10 && a>0) {
 							mat[i%9][i/9] = a;
 						} else { //if wrong integer 
-							JOptionPane.showMessageDialog(frame, "Invalid input integer");
+							JOptionPane.showMessageDialog(frame, "Invalid integer, input must be an integer in [1,9]");
 							return; //stops code
 						}
 					} else { //if empty textfield
@@ -67,22 +67,22 @@ public class GUI {
 					}
 					
 				} catch(Exception e) { //if non integer input
-					JOptionPane.showMessageDialog(frame, "Invalid input");
+					JOptionPane.showMessageDialog(frame, "Invalid input, Input must be an integer in [1,9]");
 					return; //stops code
 				}
 			}
 			//make matrix and solve
 			Sudoku entry = new Sudoku();
 			entry.setMatrix(mat);
-			boolean stat = entry.solve();
+			boolean status = entry.solve();
 			//If else is done in case a valid sudoku entry is actually not solveable, easier to leave it here just in case.
-			if (stat) { //show solved matrix in GUI
+			if (status) { //show solved matrix in GUI
 				int[][] matout = entry.getMatrix();
 				for (int i=0; i<81; i++) {	
 					boxes[i].setText(String.valueOf(matout[i%9][i/9]));
 				}
 			} else { //If unsolvable
-				JOptionPane.showMessageDialog(frame, "Invalid sudoku");
+				JOptionPane.showMessageDialog(frame, "Sudoku has no solution, please check that numbers are unique in each row, column and quadrant.");
 			}
 		});
 		

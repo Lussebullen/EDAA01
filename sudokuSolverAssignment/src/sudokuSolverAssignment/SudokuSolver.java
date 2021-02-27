@@ -78,7 +78,7 @@ public interface SudokuSolver {
 	public boolean isAllValid();
 		
 	/** 
-	 * Recursively attempts to solve the soduku using backtracking.
+	 * Recursively attempts to solve the sudoku using backtracking.
 	 * If there exists a solution the grid will take on the values of one possible solution.
 	 * 
 	 * @return false 

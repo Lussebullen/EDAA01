@@ -28,19 +28,11 @@ class sudokuTest {
 	
 	@Test
 	void testEmpty() { // tests an empty
-		int[][] matin= { { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		int[][] matin= new int[9][9];
 		sud.setMatrix(matin);
 		for (int i=0;i<9;i++) {
 			for (int k=0; k<9;k++) {
-				assertTrue(sud.getMatrix()[i][k]==0,"Solved matrix is not correct");
+				assertTrue(sud.getMatrix()[i][k]==0,"set/getMatrix not correct");
 			}
 		}
 		assertTrue(sud.solve(),"Empty matrix not solvable");
@@ -49,6 +41,7 @@ class sudokuTest {
 				assertTrue(sud.getMatrix()[i][k]!=0,"Solved matrix is not correct");
 			}
 		}
+		assertTrue(sud.isAllValid(),"Matrix is solved correctly.");
 		
 	}
 	@Test
@@ -223,5 +216,21 @@ class sudokuTest {
 		assertTrue(sud.getNumber(1, 1)==0,"Clearnumber is faulty");
 		
 	}
+	
+	@Test
+	void testUnsolvable() {
+		int[][] matin = { { 1, 2, 3, 0, 0, 0, 0, 0, 0 },
+		      	   { 4, 5, 6, 0, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 7, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		      	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		sud.setMatrix(matin);
+		assertFalse(sud.solve(), "Solve still tries solving an invalid soduku");
+	}
+
 
 }

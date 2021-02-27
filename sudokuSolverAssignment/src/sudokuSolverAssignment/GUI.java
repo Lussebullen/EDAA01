@@ -5,30 +5,11 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.swing.ButtonGroup;
-import javax.swing.InputMap;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 
 public class GUI {
@@ -50,7 +31,7 @@ public class GUI {
 		pane.add(buttonpanel);
 		pane.add(buttonpanel, BorderLayout.SOUTH);
 		
-		//Fill grid
+		//Fill grid, and color 3x3 sections.
 		JTextField[] boxes = new JTextField[81];
 		for (int i=0; i<81; i++) {
 			boxes[i] = new JTextField( "" );
@@ -72,33 +53,48 @@ public class GUI {
 		sbut.addActionListener(event -> {
 			int[][] mat = new int[9][9];
 			for (int i=0; i<81; i++) {		//Turn string from textfield to integer and store. Add errorhandling for wrong type.
-				if (boxes[i].getText().length()>0) {
-					mat[i%9][i/9] = Integer.parseInt(boxes[i].getText());
-				} else {
-					mat[i%9][i/9] = 0;
+				try {
+					if (boxes[i].getText().length()>0) {  //checks integer 1-9
+						int a = Integer.parseInt(boxes[i].getText());
+						if (a<10 && a>0) {
+							mat[i%9][i/9] = a;
+						} else { //if wrong integer 
+							JOptionPane.showMessageDialog(frame, "Invalid input integer");
+							return; //stops code
+						}
+					} else { //if empty textfield
+						mat[i%9][i/9] = 0;
+					}
+					
+				} catch(Exception e) { //if non integer input
+					JOptionPane.showMessageDialog(frame, "Invalid input");
+					return; //stops code
 				}
 			}
-			//make matrix
+			//make matrix and solve
 			Sudoku entry = new Sudoku();
 			entry.setMatrix(mat);
-			entry.solve();
-			int[][] matout = entry.getMatrix();
-			for (int i=0; i<81; i++) {	
-				boxes[i].setText(String.valueOf(matout[i%9][i/9]));
+			boolean stat = entry.solve();
+			//If else is done in case a valid sudoku entry is actually not solveable, easier to leave it here just in case.
+			if (stat) { //show solved matrix in GUI
+				int[][] matout = entry.getMatrix();
+				for (int i=0; i<81; i++) {	
+					boxes[i].setText(String.valueOf(matout[i%9][i/9]));
+				}
+			} else { //If unsolvable
+				JOptionPane.showMessageDialog(frame, "Invalid sudoku");
 			}
 		});
 		
+		//Clears the grid when clear button is pressed.
 		cbut.addActionListener(event -> {
 			for (int i=0; i<81; i++) {	
 				boxes[i].setText("");
 			}
 		});
 		
-		
 		frame.pack();
 		frame.setVisible(true);
 		frame.setSize(heigth,width);
-
-		
 	}
 }

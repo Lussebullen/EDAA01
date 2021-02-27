@@ -20,8 +20,6 @@ public class Sudoku implements SudokuSolver {
 	public int getNumber(int r, int c) {
 		if (r<0 || c<0 || r>8 || c>8 ) {
 			throw new IllegalArgumentException();
-		//} else if (grid[r][c] == null) {   //if empty
-		//	return 0;
 		} else {
 			return grid[r][c];
 		}
@@ -57,7 +55,6 @@ public class Sudoku implements SudokuSolver {
 					}
 				}
 			}
-			
 			return true;
 		}
 	}
@@ -83,6 +80,15 @@ public class Sudoku implements SudokuSolver {
 		return solve(0,0);
 	}
 	private boolean solve(int r, int c) {
+		//preliminary check for invalid inputs
+		for (int row=0; row<9; row++) {
+			for (int col=0; col<9; col++) {
+				if(grid[row][col]!=0 && !this.isValid(row, col, grid[row][col])) {
+					return false;
+				}
+			}
+		}
+		//
 		
 		for (int row=0; row<9; row++) {
 			for (int col=0; col<9; col++) {
@@ -101,7 +107,12 @@ public class Sudoku implements SudokuSolver {
 				}
 			}
 		}
-		return true;
+		
+		if (this.isAllValid()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

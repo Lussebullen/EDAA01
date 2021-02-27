@@ -1,6 +1,5 @@
 package map;
 
-import java.util.ArrayList;
 
 public class SimpleHashMap<K,V> implements Map<K, V> {
 	Entry<K,V>[] table;

@@ -12,7 +12,7 @@ public interface SudokuSolver {
 	 *            The number to insert in box r, c
 	 * @throws IllegalArgumentException        
 	 *             if r or c is outside [0..getDimension()-1] or
-	 *             number is outside [1..9] 
+	 *             number is outside [1..9] 		
 	 */
 	public void setNumber(int r, int c, int nbr);
 	
@@ -23,36 +23,89 @@ public interface SudokuSolver {
 	 *            The row
 	 * @param c
 	 *            The column
-	 * @param number
-	 *            The number to insert in r, c
-	 * @return the number in box r,c or 0 if the box is empty.
+	 * @return the number in box r,c or 0 if the box is empty
 	 * @throws IllegalArgumentException
-	 *             if r or c is outside [0..getDimension()-1]
+	 *             if r or c is outside [0..getDimension()-1] 
 	 */
 	public int getNumber(int r, int c);
 	
-	// Tömmer rutan r,c.
-	// IllegalArgumentException om fel värde på r eller c
+	/** 
+	 * Clears the number in box r,c i.e makes it 0.
+	 * 
+	 * @param r
+	 *            The row
+	 * @param c
+	 *            The column
+	 * 
+	 * @throws IllegalArgumentException        
+	 *             if r or c is outside [0..getDimension()-1]
+	 * 
+	 */
 	public void clearNumber(int r, int c);
 	
-	// Kontrollerar om värdet nbr i rutan r,c är ok enligt reglerna.
-	// IllegalArgumentException om fel värde på r, c eller nbr
+	/**
+	 *  Checks that there is no element with the same integer value
+	 *  on the row, column or quadrant of input.
+	 *  
+	 * @param r
+	 *            The row
+	 * @param c
+	 *            The column
+	 * @param nbr
+	 *            The number to insert in box r, c
+	 *            
+	 * @throws IllegalArgumentException        
+	 *             if r or c is outside [0..getDimension()-1] or
+	 *             number is outside [1..9] 	            
+	 *            
+	 *            
+	 * @return true 
+	 * 				if nbr was valid.
+	 */
 	public boolean isValid(int r, int c, int nbr);
 
-	// Kontrollerar att alla ifyllda siffrorna uppfyller reglerna.
+	/** 
+	 * Examines all of the entries in our Sudoku are legitimate entries.
+	 * 
+	 * @return false 
+	 * 				if an entry has the number 0 or if the isValid functions returns false
+	 *  
+	 * 
+	 * @return true 
+	 * 				if all entries were valid
+	 * 
+	 */
 	public boolean isAllValid();
 		
-	// Försöker lösa sudokut och returnerar true om det var lösbart, annars false.
+	/** 
+	 * Recursively attempts to solve the soduku using backtracking.
+	 * If there exists a solution the grid will take on the values of one possible solution.
+	 * 
+	 * @return false 
+	 * 				if it could not be solved
+	 *  
+	 * 
+	 * @return true 
+	 * 				if it solved the Sudoku
+	 * 
+	 * 
+	 * 
+	 */
 	public boolean solve();
 		
-	// Tömmer alla rutorna i sudokut
+	/** 
+	 * 
+	 * Resets the grid making all entries 0.
+	 * 
+	 */
 	public void clear();
 		
 	/**
-	 * Returns the numbers in the grid. An empty box i represented
+	 * Returns the numbers in the grid. An empty box is represented
 	 * by the value 0.
 	 * 
-	 * @return the numbers in the grid
+	 * @return
+	 * 			 the matrix
 	 */
 	public int[][] getMatrix();
 

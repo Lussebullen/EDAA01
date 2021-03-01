@@ -1,5 +1,7 @@
 package sudokuSolverAssignment;
 
+import org.junit.TestCouldNotBeSkippedException;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -28,7 +30,7 @@ public class Main {
 		         	   { 6, 9, 2, 3, 5, 1, 8, 0, 4 },
 		         	   { 0, 4, 5, 2, 8, 6, 3, 1, 9 } };
 		
-		int[][] unsolvable = { { 1, 0, 0, 0, 0, 0, 1, 0, 0 },
+		int[][] unsolvable = { { 1, 0, 0, 0, 0, 0, 0, 0, 0 },
 	         	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 	         	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 	         	   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -48,6 +50,7 @@ public class Main {
 		
 		System.out.println(testcase.solve());
 		System.out.println(testcase.isAllValid());
+		System.out.println(testcase.getMatrix()[1][1]);
 		//for (int i=0; i<9; i++) {
 		//	for (int j=0; j<9; j++) {
 		//		System.out.println(test2.getNumber(i, j)==truex[i][j]);
@@ -73,15 +76,16 @@ public class Main {
 		      	   { 8, 6, 7, 4, 3, 2, 1, 5, 9 },
 		      	   { 9, 2, 3, 7, 5, 1, 4, 8, 6 } };
 		testcase.setMatrix(matin);
-		testcase.solve();
+		System.out.println("solvenew: "+ testcase.solve());
 		int[][] solvd = testcase.getMatrix();
-		System.out.println("asd "+solvd.equals(matout));
 		for (int i=0;i<9;i++) {
 			for (int k=0; k<9;k++) {
-				System.out.println(solvd[0][0]==matout[0][0]);
+				System.out.println(solvd[i][k]==matout[i][k]);
+				System.out.println(solvd[i][k]+"  "+matout[i][k]);
 			}
 		}
 		System.out.println(solvd[0][0]+"  "+matout[0][0]);
+		System.out.println(testcase.isAllValid());
 		
 		GUI testgui = new GUI();
 		

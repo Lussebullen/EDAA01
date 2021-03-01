@@ -89,29 +89,60 @@ public class Sudoku implements SudokuSolver {
 	}
 	private boolean solve(int r, int c) {
 		//recursively solve sudoku with backtracking
-		for (int row=0; row<9; row++) {
-			for (int col=0; col<9; col++) {
-				if (grid[row][col]==0) {  //only do something if empty.
-					for (int val=1; val<10; val++) {
-						if (this.isValid(row, col, val)) {
-							grid[row][col]=val;
-							if (this.solve()) {
-								return true;
-							} else {
-								grid[row][col]=0;
-							}
-						} 
+		if (r>8) {
+			return true;
+		}
+		if (grid[r][c]==0) {
+			for (int val=1; val<10; val++) {
+				if (this.isValid(r, c, val)) {
+					grid[r][c]=val;
+					if (c==8) {
+						if (this.solve(r+1,0)) {
+							return true;
+						} else {
+							grid[r][c]=0;
+						}
+					} else {
+						if (this.solve(r,c+1)) {
+							return true;
+						} else {
+							grid[r][c]=0;
+						}
 					}
-					return false;
 				}
 			}
-		}
-		//returns validity of found solution.
-		if (this.isAllValid()) {
-			return true;
-		} else {
 			return false;
+		} else if (c==8) {
+			return this.solve(r+1,0);
+		} else {
+			return this.solve(r,c+1);
 		}
+		
+		
+//		for (int row=0; row<9; row++) {
+//			for (int col=0; col<9; col++) {
+//				if (grid[row][col]==0) {  //only do something if empty.
+//					for (int val=1; val<10; val++) {
+//						if (this.isValid(row, col, val)) {
+//							grid[row][col]=val;
+//							if (this.solve()) {
+//								return true;
+//							} else {
+//								grid[row][col]=0;
+//							}
+//						} 
+//					}
+//					return false;
+//				}
+//			}
+//		}
+		
+		//returns validity of found solution.
+//		if (this.isAllValid()) {
+//			return true;
+//		} else {
+//			return false;
+//		}
 	}
 
 	@Override

@@ -117,32 +117,6 @@ public class Sudoku implements SudokuSolver {
 		} else {
 			return this.solve(r,c+1);
 		}
-		
-		
-//		for (int row=0; row<9; row++) {
-//			for (int col=0; col<9; col++) {
-//				if (grid[row][col]==0) {  //only do something if empty.
-//					for (int val=1; val<10; val++) {
-//						if (this.isValid(row, col, val)) {
-//							grid[row][col]=val;
-//							if (this.solve()) {
-//								return true;
-//							} else {
-//								grid[row][col]=0;
-//							}
-//						} 
-//					}
-//					return false;
-//				}
-//			}
-//		}
-		
-		//returns validity of found solution.
-//		if (this.isAllValid()) {
-//			return true;
-//		} else {
-//			return false;
-//		}
 	}
 
 	@Override

@@ -1,3 +1,3 @@
 # EDAA01
-For java continuation course EDAA01 at LTH.
+Java continuation course EDAA01 at Lunds Tekniska Högskola.
 Projects and test code.
